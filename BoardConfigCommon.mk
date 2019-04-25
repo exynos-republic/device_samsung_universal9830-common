@@ -42,6 +42,9 @@ BOARD_CUSTOM_BT_CONFIG := $(COMMON_PATH)/bluetooth/libbt_vndcfg.txt
 # Camera
 $(call soong_config_set,universal9830CameraVars,universal9830_model,$(TARGET_DEVICE))
 
+# Compatibility Matrix
+DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
+
 # Dexpreopt
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)
