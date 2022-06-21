@@ -205,6 +205,10 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     SettingsGoogle \
     NexusLauncherRelease
 
+# Enable background Blur
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.surface_flinger.supports_background_blur=1
+
 # Compile SystemUI on device with `speed`.
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.systemuicompilerfilter=speed
