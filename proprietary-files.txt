@@ -213,6 +213,10 @@ vendor/etc/plmn_se13.bin
 -vendor/lib64/libril-samsung.so|ae21d2979f849435331f7e5c224dd1ce61615eba
 -vendor/lib64/libsemnativecarrierfeature.so|ca44453cf7cca968606b56936be7de0d214d74be
 
+# RIL - from x1s - G981BXXSCDUJ5
+-vendor/lib64/libsec-ril-dsds.so|7ed9ea9e8b4a70759f1c1dc039b847868ac38d06
+-vendor/lib64/libsec-ril.so|cfc54d1a2048cbea61900cc034808e7b3ee23ad4
+
 # Secnative
 -vendor/lib/libsecnativefeature.so
 -vendor/lib64/libsecnativefeature.so
