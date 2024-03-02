@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Screen Off UDFPS</string>
+
+    <string name="screen_off_udfps_title">Enable Screen Off UDFPS</string>
+    <string name="screen_off_udfps_summary">Keep UDFPS enabled when the screen is off</string>
+    <string name="screen_off_udfps_not_supported">Screen off UDFPS control is not supported</string>
+</resources>
