@@ -198,6 +198,15 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/nfc/libnfc-sec-vendor.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-sec-vendor.conf \
     $(COMMON_PATH)/configs/nfc/nfcee_access.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/nfcee_access.xml
 
+# OpenCL
+PRODUCT_PACKAGES += \
+    libOpenCL_symlink32 \
+    libOpenCL_symlink64 \
+    libOpenCL.1_symlink32 \
+    libOpenCL.1_symlink64 \
+    libOpenCL.1.1_symlink32 \
+    libOpenCL.1.1_symlink64
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 PRODUCT_ENFORCE_RRO_TARGETS := *
