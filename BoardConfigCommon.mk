@@ -42,6 +42,7 @@ BOARD_USE_SEC_AUDIO_DYNAMIC_NREC := true
 BOARD_USE_SEC_AUDIO_PARAM_UPDATE := false
 BOARD_USE_SEC_AUDIO_RESAMPLER := true
 BOARD_USE_SEC_AUDIO_SAMSUNGRECORD := true
+BOARD_USE_SEC_AUDIO_SOUND_TRIGGER_ENABLED := true
 # BOARD_USE_SEC_AUDIO_SUPPORT_GAMECHAT_SPK_AEC := true
 BOARD_USE_SEC_AUDIO_SUPPORT_LISTENBACK_DSPEFFECT := true
 BOARD_USE_USB_OFFLOAD := true
@@ -187,6 +188,12 @@ include device/lineage/sepolicy/exynos/sepolicy.mk
 BOARD_SEPOLICY_TEE_FLAVOR := teegris
 include device/samsung_slsi/sepolicy/sepolicy.mk
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
+
+# SoundTrigger
+BOARD_SOUNDTRIGGER_CONFIG_PATH := $(COMMON_PATH)/configs/sthal
+BOARD_USE_SOUNDTRIGGER_HAL := true
+BOARD_USE_SOUNDTRIGGER_HAL_2_3 := true
+BOARD_USE_SOUNDTRIGGER_HAL_MMAP := true
 
 # USB
 $(call soong_config_set,samsungUsbGadgetVars,gadget_name,10e00000.dwc3)
