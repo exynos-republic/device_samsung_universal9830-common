@@ -307,13 +307,24 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-    android.hardware.radio@1.4.vendor:64 \
-    android.hardware.radio.config@1.2.vendor:64 \
-    android.hardware.radio.deprecated@1.0.vendor:64 \
+    android.hardware.radio@1.2.vendor:64 \
+    android.hardware.radio.config-V1-ndk.vendor:64 \
+    android.hardware.radio.data-V1-ndk.vendor:64 \
+    android.hardware.radio.messaging-V1-ndk.vendor:64 \
+    android.hardware.radio.modem-V1-ndk.vendor:64 \
+    android.hardware.radio.network-V1-ndk.vendor:64 \
+    android.hardware.radio.sim-V1-ndk.vendor:64 \
+    android.hardware.radio.voice-V1-ndk.vendor:64 \
+    cass.rc \
     init.baseband.rc \
-    init.vendor.rilchip.rc \
     init.vendor.rilcommon.rc \
-    secril_config_svc
+    libdsms_vendor:64 \
+    secril_config_svc \
+    sehradiomanager \
+    vendor.samsung.rilchip.slsi.rc
+
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/configs/ril/sehradiomanager.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sehradiomanager.conf
 
 # SamsungDoze
 PRODUCT_PACKAGES += \
@@ -376,6 +387,10 @@ PRODUCT_PACKAGES += \
     android.hardware.usb-service.samsung \
     android.hardware.usb.gadget-service.samsung \
     init.exynos990.usb.rc
+
+# Vaultkepper
+PRODUCT_PACKAGES += \
+    vaultkeeper_common.rc
 
 # Vibrator
 PRODUCT_PACKAGES += \

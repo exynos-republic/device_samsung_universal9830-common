@@ -1,4 +1,11 @@
 prebuilt_etc {
+    name: "cass.rc",
+    src: "etc/init/cass.rc",
+    sub_dir: "init",
+    vendor: true,
+}
+
+prebuilt_etc {
     name: "init.baseband.rc",
     src: "etc/init/init.baseband.rc",
     sub_dir: "init",
@@ -43,13 +50,6 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-    name: "init.vendor.rilchip.rc",
-    src: "etc/init/init.vendor.rilchip.rc",
-    sub_dir: "init",
-    vendor: true,
-}
-
-prebuilt_etc {
     name: "init.vendor.rilcommon.rc",
     src: "etc/init/init.vendor.rilcommon.rc",
     sub_dir: "init",
@@ -59,6 +59,20 @@ prebuilt_etc {
 prebuilt_etc {
     name: "teegris_v4.rc",
     src: "etc/init/teegris_v4.rc",
+    sub_dir: "init",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "vaultkeeper_common.rc",
+    src: "etc/init/vaultkeeper_common.rc",
+    sub_dir: "init",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "vendor.samsung.rilchip.slsi.rc",
+    src: "etc/init/vendor.samsung.rilchip.slsi.rc",
     sub_dir: "init",
     vendor: true,
 }

@@ -76,9 +76,7 @@ vendor.hwc.exynos.vsync_mode=0
 ro.incremental.enable=true
 
 # RIL
-ro.vendor.sec.radio.def_network=9,9
 vendor.sec.rild.libpath=/vendor/lib64/libsec-ril.so
-vendor.sec.rild.libpath2=/vendor/lib64/libsec-ril-dsds.so
 
 # SoundTrigger
 ro.hardware.sound_trigger.primary=exynos990
