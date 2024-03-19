@@ -282,6 +282,10 @@ PRODUCT_PACKAGES += \
     init.exynos990.rc \
     ueventd.exynos990.rc
 
+# Rebalance Interrupts
+PRODUCT_PACKAGES += \
+    rebalance_interrupts-samsung
+
 # Recovery
 PRODUCT_PACKAGES += \
     init.recovery.exynos990.rc
