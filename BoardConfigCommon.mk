@@ -16,9 +16,6 @@
 
 COMMON_PATH := device/samsung/universal9830-common
 
-# APEX
-DEXPREOPT_GENERATE_APEX_IMAGE := true
-
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a-dotprod
