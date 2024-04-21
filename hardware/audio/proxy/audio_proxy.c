@@ -70,7 +70,7 @@
 #endif
 
 #ifdef SEC_AUDIO_PARAM_UPDATE
-#include <audio_param_update/audio_param_update.h>
+extern int init_audio_param();
 #endif
 
 /******************************************************************************/

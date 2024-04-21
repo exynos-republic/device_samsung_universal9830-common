@@ -34,6 +34,10 @@ LOCAL_C_INCLUDES += \
 LOCAL_HEADER_LIBRARIES := libhardware_headers
 LOCAL_SHARED_LIBRARIES := liblog libcutils libtinyalsa libtinycompress libaudioutils libaudioroute libalsautils libexpat
 
+ifeq ($(BOARD_USE_SEC_AUDIO_PARAM_UPDATE),true)
+LOCAL_SHARED_LIBRARIES += libaudioparamupdate libaudioroute.exynos990 libtinyalsa.exynos990
+endif
+
 # USB Offload Audio Feature
 ifeq ($(BOARD_USE_USB_OFFLOAD),true)
 LOCAL_CFLAGS += -DSUPPORT_USB_OFFLOAD
@@ -71,6 +75,10 @@ endif
 
 ifeq ($(BOARD_USE_SEC_AUDIO_DYNAMIC_NREC),true)
 LOCAL_CFLAGS += -DSEC_AUDIO_DYNAMIC_NREC
+endif
+
+ifeq ($(BOARD_USE_SEC_AUDIO_PARAM_UPDATE),true)
+LOCAL_CFLAGS += -DSEC_AUDIO_PARAM_UPDATE
 endif
 
 ifeq ($(BOARD_USE_SEC_AUDIO_SUPPORT_LISTENBACK_DSPEFFECT),true)
