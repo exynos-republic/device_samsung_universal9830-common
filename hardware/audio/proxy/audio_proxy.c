@@ -61,10 +61,6 @@
 #include "audio_a2dp_proxy.h"
 #endif
 
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-#include <audio_route/audio_route_exynos.h>
-#endif
-
 #ifdef SEC_AUDIO_DUMP
 #include "SecCoreUtils_Interface.h"
 #endif
@@ -1726,30 +1722,6 @@ static void add_dual_path(void *proxy, char *path_name)
     }
 }
 
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-static void add_mixer_name_path(void *proxy, char *path_name)
-{
-    struct audio_proxy *aproxy = proxy;
-    // add incall music rcv path
-    if (aproxy->incallmusic_rcv) {
-        char tempStr[MAX_PATH_NAME_LEN] = {0};
-        char* szDump = NULL;
-
-        if (strstr(path_name, "mic") != NULL)
-            szDump = strstr(path_name, "mic");
-        else if (strstr(path_name, "handset") != NULL)
-            szDump = strstr(path_name, "handset");
-
-        if ((szDump != NULL) && (strstr(path_name, "loopback"))) {
-            char tempRet[MAX_PATH_NAME_LEN] = {0};
-            strncpy(tempStr, path_name, szDump - path_name);
-            sprintf(tempRet, "%s%s%s", tempStr, "incallmusic-", szDump);
-            strncpy(path_name, tempRet, MAX_PATH_NAME_LEN);
-        }
-    }
-}
-#endif
-
 /* Enable new Modifier */
 static void set_modifier(void *proxy, modifier_type modifier)
 {
@@ -1853,9 +1825,6 @@ static void set_route(void *proxy, audio_usage ausage, device_type device, int m
     make_path(ausage, device, path_name);
     add_dual_path(aproxy, path_name);
     add_usb_path_extn(aproxy, ausage, path_name, device);
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-    add_mixer_name_path(aproxy, path_name);
-#endif
     audio_route_apply_and_update_path(aproxy->aroute, path_name);
     ALOGI("proxy-%s: routed to %s", __func__, path_name);
 
@@ -1887,9 +1856,6 @@ static void set_reroute(void *proxy, audio_usage old_ausage, device_type old_dev
     make_path(old_ausage, old_device, path_name);
     add_dual_path(aproxy, path_name);
     add_usb_path_extn(aproxy, old_ausage, path_name, old_device);
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-    add_mixer_name_path(aproxy, path_name);
-#endif
     /* Updated to reset_and_update to match Q audio-route changes
      * otherwise noise issue happened in alarm/ringtone scenarios
      */
@@ -1931,9 +1897,6 @@ static void set_reroute(void *proxy, audio_usage old_ausage, device_type old_dev
         make_path(new_ausage, new_device, path_name);
         add_dual_path(aproxy, path_name);
         add_usb_path_extn(aproxy, new_ausage, path_name, new_device);
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-        add_mixer_name_path(aproxy, path_name);
-#endif
         audio_route_apply_and_update_path(aproxy->aroute, path_name);
         ALOGI("proxy-%s: routed %s", __func__, path_name);
 
@@ -1962,9 +1925,6 @@ static void reset_route(void *proxy, audio_usage ausage, device_type device)
     make_path(ausage, device, path_name);
     add_dual_path(aproxy, path_name);
     add_usb_path_extn(aproxy, ausage, path_name, device);
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-    add_mixer_name_path(aproxy, path_name);
-#endif
     audio_route_reset_and_update_path(aproxy->aroute, path_name);
     ALOGI("proxy-%s: unrouted %s", __func__, path_name);
 
@@ -4384,9 +4344,6 @@ int proxy_open_capture_stream(void *proxy_stream, int32_t min_size_frames, void 
         } else
             flags = PCM_IN | PCM_MONOTONIC;
 
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-        unsigned int orig_period_size = apstream->pcmconfig.period_size;
-#endif
         /* open WDMA pcm first to trigger DMA */
         apstream->dma_pcm = pcm_open(sound_card, sound_device, flags, &apstream->pcmconfig);
         if (apstream->dma_pcm && !pcm_is_ready(apstream->dma_pcm)) {
@@ -4396,12 +4353,6 @@ int proxy_open_capture_stream(void *proxy_stream, int32_t min_size_frames, void 
                   pcm_get_error(apstream->dma_pcm));
             goto err_open;
         }
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-        if (orig_period_size != apstream->pcmconfig.period_size)
-            ALOGI("%s-%s: changed period_size %d to %d by pcm_open()",
-                stream_table[apstream->stream_type], __func__,
-                orig_period_size, apstream->pcmconfig.period_size);
-#endif
 
         snprintf(pcm_path, sizeof(pcm_path), "/dev/snd/pcmC%uD%u%c", sound_card, sound_device, 'c');
 
@@ -4434,12 +4385,6 @@ int proxy_open_capture_stream(void *proxy_stream, int32_t min_size_frames, void 
                       pcm_get_error(apstream->pcm));
                 goto err_open;
             }
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-            if (orig_period_size != apstream->pcmconfig.period_size)
-                ALOGI("%s-%s: changed period_size %d to %d by pcm_open()",
-                    stream_table[apstream->stream_type], __func__,
-                    orig_period_size, apstream->pcmconfig.period_size);
-#endif
 
             snprintf(pcm_path, sizeof(pcm_path), "/dev/snd/pcmC%uD%u%c", VIRTUAL_PRIMARY_CAPTURE_CARD, VIRTUAL_PRIMARY_CAPTURE_DEVICE, 'c');
             ALOGI("%s-%s: The opened Virtual PCM Device is %s with Sampling_Rate(%u) PCM_Format(%d) Channel(%d)",
@@ -5311,11 +5256,6 @@ void proxy_set_mixer_value_string(void *proxy, const char *name, const char *val
     if (ctrl) {
         ret = mixer_ctl_set_enum_by_string(ctrl, value);
         if (ret != 0) {
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-            if (strcmp(name, MIXER_CTL_ABOX_VSS_STATE) == 0) {
-                ALOGI("proxy-%s: ABOX VSS State NORMAL !!! : ret = %d", __func__, ret);
-            } else
-#endif
                 ALOGE("proxy-%s: failed to set %s", __func__, name);
         }
     } else {
@@ -5956,11 +5896,6 @@ void proxy_set_spk_ampL_power(void* proxy, bool state)
 {
     struct audio_proxy *aproxy = proxy;
 
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-    if (aproxy->spk_ampL_powerOn == state)
-        return;
-#endif
-
     ALOGI("proxy-%s: enable upper-spk-amp-%s", __func__, state ? "unmute" : "mute");
     aproxy->spk_ampL_powerOn = state;
 
@@ -6432,13 +6367,7 @@ void * proxy_init(void)
     aproxy->offload_effect_lib_update = NULL;
 
     /* dualspk */
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-    aproxy->spk_ampL_powerOn = true;
-    aproxy->support_dualspk = true;
-    aproxy->incallmusic_rcv = false;
-#else
     aproxy->spk_ampL_powerOn = false;
-#endif
 
 #ifdef SEC_AUDIO_DUMP
     aproxy->input_cnt = 0;
@@ -6531,15 +6460,6 @@ int32_t proxy_get_last_format(void *proxy_stream)
         proxy_get_actual_format(apstream) : apstream->requested_format;
 
     return format;
-}
-#endif
-
-#ifdef SEC_PRODUCT_FEATURE_AUDIO_COMMON
-void proxy_set_incallmusic_rcv(void *proxy, bool state)
-{
-    struct audio_proxy *aproxy = proxy;
-    aproxy->incallmusic_rcv = state;
-    return;
 }
 #endif
 
