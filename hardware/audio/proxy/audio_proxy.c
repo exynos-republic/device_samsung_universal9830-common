@@ -1133,6 +1133,11 @@ static void prepare_routing_device_config(void *proxy, int ausage, device_type t
     return;
 }
 
+#ifdef SEC_AUDIO_SUPPORT_LISTENBACK_DSPEFFECT
+void proxy_stop_karaoke_listenback(void *proxy);
+void proxy_start_karaoke_listenback(void *proxy);
+#endif
+
 static void enable_internal_path(void *proxy, int ausage, device_type target_device)
 {
     struct audio_proxy *aproxy = proxy;
