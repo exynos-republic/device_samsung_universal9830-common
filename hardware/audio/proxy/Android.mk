@@ -38,6 +38,10 @@ ifeq ($(BOARD_USE_SEC_AUDIO_PARAM_UPDATE),true)
 LOCAL_SHARED_LIBRARIES += libaudioparamupdate libaudioroute.exynos990 libtinyalsa.exynos990
 endif
 
+ifeq ($(BOARD_USE_SEC_AUDIO_RESAMPLER),true)
+LOCAL_SHARED_LIBRARIES += libSamsungPostProcessConvertor
+endif
+
 # USB Offload Audio Feature
 ifeq ($(BOARD_USE_USB_OFFLOAD),true)
 LOCAL_CFLAGS += -DSUPPORT_USB_OFFLOAD
@@ -79,6 +83,10 @@ endif
 
 ifeq ($(BOARD_USE_SEC_AUDIO_PARAM_UPDATE),true)
 LOCAL_CFLAGS += -DSEC_AUDIO_PARAM_UPDATE
+endif
+
+ifeq ($(BOARD_USE_SEC_AUDIO_RESAMPLER),true)
+LOCAL_CFLAGS += -DSEC_AUDIO_RESAMPLER
 endif
 
 ifeq ($(BOARD_USE_SEC_AUDIO_SUPPORT_LISTENBACK_DSPEFFECT),true)
