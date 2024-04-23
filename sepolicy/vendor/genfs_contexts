@@ -112,6 +112,7 @@ genfscon sysfs /devices/platform/10e00000.usb/10e00000.dwc3/udc/10e00000.dwc3/cu
 # V4L
 genfscon sysfs /devices/platform/186d0000.mfc/video4linux/video6/name                    u:object_r:sysfs_v4l:s0
 genfscon sysfs /devices/platform/186d0000.mfc/video4linux/video7/name                    u:object_r:sysfs_v4l:s0
+genfscon sysfs /devices/platform/186d0000.mfc/video4linux/video8/name                    u:object_r:sysfs_v4l:s0
 
 # Vmscan
 genfscon sysfs /kernel/mm/vmscan/am_app_launch     u:object_r:sysfs_app_launch_writable:s0
