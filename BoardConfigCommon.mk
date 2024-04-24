@@ -46,6 +46,10 @@ BOARD_USE_SEC_AUDIO_SAMSUNGRECORD := true
 BOARD_USE_SEC_AUDIO_SUPPORT_LISTENBACK_DSPEFFECT := true
 BOARD_USE_USB_OFFLOAD := true
 
+ifneq ($(TARGET_DEVICE),r8s)
+BOARD_USE_CAMCORDER_QUAD_MIC := true
+endif
+
 # Camera
 $(call soong_config_set,samsungCameraVars,usage_64bit,true)
 SOONG_CONFIG_NAMESPACES += samsungCameraVars
