@@ -4256,6 +4256,9 @@ int proxy_close_capture_stream(void *proxy_stream)
 
         return ret;
     }
+
+    if (aproxy->sound_trigger_notify_ahal_record_status)
+        aproxy->sound_trigger_notify_ahal_record_status(false);
 #endif
 
     /* Close Normal PCM Device */
@@ -4321,6 +4324,9 @@ int proxy_open_capture_stream(void *proxy_stream, int32_t min_size_frames, void 
 
         return ret;
     }
+
+    if (aproxy->sound_trigger_notify_ahal_record_status)
+        aproxy->sound_trigger_notify_ahal_record_status(true);
 #endif
 
     if (is_active_usage_APCall(aproxy) && apstream->pcmconfig.rate != 48000) {
@@ -6261,6 +6267,9 @@ void * proxy_init(void)
         aproxy->sound_trigger_voicecall_status =
                     (int (*)(int))dlsym(aproxy->sound_trigger_lib,
                                                     "sound_trigger_voicecall_status");
+        aproxy->sound_trigger_notify_ahal_record_status =
+                    (int (*)(int))dlsym(aproxy->sound_trigger_lib,
+                                                    "sound_trigger_notify_ahal_record_status");
         if (!aproxy->sound_trigger_open_for_streaming ||
             !aproxy->sound_trigger_read_samples ||
             !aproxy->sound_trigger_close_for_streaming ||
@@ -6268,7 +6277,8 @@ void * proxy_init(void)
             !aproxy->sound_trigger_read_recording_samples ||
             !aproxy->sound_trigger_close_recording ||
             !aproxy->sound_trigger_headset_status ||
-            !aproxy->sound_trigger_voicecall_status) {
+            !aproxy->sound_trigger_voicecall_status ||
+            !aproxy->sound_trigger_notify_ahal_record_status) {
 
             ALOGE("%s: Error grabbing functions in %s", __func__, sound_trigger_hal_path);
             aproxy->sound_trigger_open_for_streaming = 0;
@@ -6279,6 +6289,7 @@ void * proxy_init(void)
             aproxy->sound_trigger_close_recording = 0;
             aproxy->sound_trigger_headset_status = 0;
             aproxy->sound_trigger_voicecall_status = 0;
+            aproxy->sound_trigger_notify_ahal_record_status = 0;
         }
     }
 #endif

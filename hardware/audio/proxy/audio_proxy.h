@@ -219,6 +219,7 @@ struct audio_proxy
 
     int (*sound_trigger_headset_status)(int);
     int (*sound_trigger_voicecall_status)(int);
+    int (*sound_trigger_notify_ahal_record_status)(int);
 
     int sthal_state;
 #endif
