@@ -182,7 +182,10 @@ BOARD_SECCOMP_POLICY += $(COMMON_PATH)/seccomp
 VENDOR_SECURITY_PATCH := 2024-03-01
 
 # SELinux
-include device/lineage/sepolicy/exynos/sepolicy.mk
+ifeq ($(TARGE_BUILD_LINEAGEHW), true)
+  # Lineage sepolicy
+  include device/lineage/sepolicy/exynos/sepolicy.mk
+endif
 BOARD_SEPOLICY_TEE_FLAVOR := teegris
 include device/samsung_slsi/sepolicy/sepolicy.mk
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
