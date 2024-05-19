@@ -442,7 +442,7 @@ on init
     write /sys/module/g2d_task/parameters/block_on_contension 1
 
     # for tsp cmd node
-    chown system radio /sys/class/sec/tsp/cmd
+    chown system system /sys/class/sec/tsp/cmd
 
     # sdcard ramdump
     chown system system /sys/module/sec_debug/parameters/dump_sink
@@ -778,6 +778,8 @@ on boot
     chmod 0664 /dev/cpuset/moderate/tasks
     chmod 0664 /dev/cpuset/moderate/cpus
 
+    setprop vendor.powerhal.init 1
+
     # MSP Core Status
     chown system system /sys/devices/system/cpu/cpu1/online
     chown system system /sys/devices/system/cpu/cpu2/online
@@ -964,7 +966,7 @@ on boot
     chown system radio /sys/class/power_supply/battery/gps
     chown system radio /sys/class/power_supply/battery/wifi
     chown system radio /sys/class/power_supply/battery/lte
-    chown system radio /sys/class/power_supply/battery/lcd
+    chown system system /sys/class/power_supply/battery/lcd
     chown system radio /sys/class/power_supply/ps/status
     chmod 0664 /sys/class/power_supply/battery/wc_control
     chmod 0664 /sys/class/power_supply/battery/wc_control_cnt
@@ -1295,7 +1297,6 @@ on boot
     # ] Permissions for Grip Sensor
 
     # Permissions for Touchscreen
-    chown system radio /sys/class/sec/tsp/cmd
     chown system system /sys/class/sec/tsp/input/enabled
     chmod 0660 /sys/class/sec/tsp/input/enabled
     chown system system /sys/class/sec/tsp/enabled
