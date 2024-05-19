@@ -272,6 +272,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/power/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
+# Proca
+PRODUCT_PACKAGES += \
+    pa_daemon_teegris.rc
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.exynos990 \

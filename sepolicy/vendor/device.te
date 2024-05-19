@@ -22,6 +22,9 @@ type jsqz_device, dev_type;
 # Eden
 type npu_device, dev_type;
 
+# Proca
+type vendor_proca_config_device, dev_type;
+
 # Soundtrigger
 type vts_fio_device, dev_type;
 

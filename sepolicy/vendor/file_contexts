@@ -56,6 +56,9 @@
 /dev/sec-nfc    u:object_r:nfc_device:s0
 /dev/p3         u:object_r:nfc_device:s0
 
+# Proca
+/dev/proca_config                            u:object_r:vendor_proca_config_device:s0
+
  # RIL
 /dev/modem_boot_spi                          u:object_r:vendor_radio_device:s0
 /dev/nr_boot0                                u:object_r:vendor_radio_device:s0
@@ -103,11 +106,11 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.secure_element@[0-9]\.[0-9]-service                              u:object_r:hal_secure_element_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.wifi@[0-9]\.[0-9]-service                                        u:object_r:hal_wifi_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.samsung_slsi\.hardware\.eden_runtime@[0-9]\.[0-9]-service                   u:object_r:hal_vendor_eden_runtime_default_exec:s0
+/(vendor|system/vendor)/bin/vendor\.samsung\.hardware\.security\.proca@2\.0-service                                u:object_r:hal_proca_default_exec:s0
 
 ####################################
 # Same-process HAL files and their dependencies
 #
-
 /(vendor|system/vendor)/lib(64)?/hw/android\.hardware\.graphics\.mapper@[0-9]\.[0-9]-impl-[0-9]\.[0-9]\.so         u:object_r:same_process_hal_file:s0
 
 ####################################

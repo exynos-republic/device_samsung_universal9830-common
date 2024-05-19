@@ -49,6 +49,14 @@ prebuilt_etc {
     vendor: true,
 }
 
+
+prebuilt_etc {
+    name: "pa_daemon_teegris.rc",
+    src: "etc/init/pa_daemon_teegris.rc",
+    sub_dir: "init",
+    vendor: true,
+}
+
 prebuilt_etc {
     name: "teegris_v4.rc",
     src: "etc/init/teegris_v4.rc",

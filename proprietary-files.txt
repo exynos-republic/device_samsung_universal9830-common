@@ -192,6 +192,9 @@ vendor/firmware/usbout.bin
 vendor/firmware/vts.bin
 vendor/firmware/yuv2bayer.bin
 
+# Proca
+-vendor/bin/vendor.samsung.hardware.security.proca@2.0-service
+
 # RIL
 -vendor/bin/cass
 -vendor/bin/cbd
