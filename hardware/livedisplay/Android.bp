@@ -29,7 +29,7 @@ cc_binary {
         "libbinder",
         "libhidlbase",
         "libutils",
-        "vendor.lineage.livedisplay@2.0",
+        //"vendor.lineage.livedisplay@2.0",
     ],
     vendor: true,
 }
