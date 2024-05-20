@@ -63,6 +63,9 @@ endif
 # Compatibility Matrix
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
 
+# VINTF Manifest
+DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
+
 # Dexpreopt
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)
