@@ -408,6 +408,8 @@ ifeq ($(TARGE_BUILD_LINEAGEHW), true)
         vendor.lineage.powershare@1.0-service.samsung
 endif
 
+DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
+
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
