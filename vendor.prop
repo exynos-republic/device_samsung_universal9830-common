@@ -77,7 +77,7 @@ vendor.hwc.exynos.vsync_mode=0
 ro.incremental.enable=true
 
 # Power HAL
-vendor.powerhal.disp.idle_support=false
+vendor.powerhal.disp.idle_support=true
 
 # RIL
 vendor.sec.rild.libpath=/vendor/lib64/libsec-ril.so
