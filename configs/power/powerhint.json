@@ -74,6 +74,7 @@
                 "2314000",
                 "2418000",
                 "1895537",
+                "1794000",
                 "1378000",
                 "962000",
                 "858000",
@@ -87,6 +88,7 @@
             "Path": "/sys/devices/platform/17000010.devfreq_mif/devfreq/17000010.devfreq_mif/scaling_devfreq_min",
             "Values": [
                 "2730000",
+                "2028000",
                 "421000"
             ],
             "ResetOnInit": true
@@ -245,25 +247,13 @@
             "PowerHint": "LAUNCH",
             "Node": "CPULittleClusterMinFreq",
             "Duration": 3000,
-            "Value": "2002000"
-        },
-        {
-            "PowerHint": "LAUNCH",
-            "Node": "CPUMidClusterMinFreq",
-            "Duration": 3000,
-            "Value": "2504000"
-        },
-        {
-            "PowerHint": "LAUNCH",
-            "Node": "CPUBigClusterMinFreq",
-            "Duration": 3000,
-            "Value": "2626000"
+            "Value": "1456000"
         },
         {
             "PowerHint": "LAUNCH",
             "Node": "MemFreq",
             "Duration": 3000,
-            "Value": "2730000"
+            "Value": "2028000"
         },
         {
             "PowerHint": "LAUNCH",
