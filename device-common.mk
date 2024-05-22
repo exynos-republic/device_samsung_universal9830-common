@@ -315,10 +315,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/ril/sehradiomanager.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sehradiomanager.conf
 
-# SamsungDoze
-PRODUCT_PACKAGES += \
-    SamsungDoze
-
 # PowerShare 
 PRODUCT_PACKAGES += \
     vendor.samsung.hardware.powershare@1.0-service \
