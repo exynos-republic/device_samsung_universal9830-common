@@ -319,6 +319,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     SamsungDoze
 
+# PowerShare 
+PRODUCT_PACKAGES += \
+    vendor.samsung.hardware.powershare@1.0-service \
+    PowerShare
+
 # Secure Element
 PRODUCT_PACKAGES += \
     android.hardware.secure_element@1.2.vendor:64
