@@ -49,6 +49,8 @@ $(call inherit-product, vendor/hentai/build/product/hentai_product.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
 
+# Inherit from prebuilt PixelApps
+$(call inherit-product, vendor/PixelApps/config.mk)
 
 # TODO: fix
 # PRODUCT_RESTRICT_VENDOR_FILES := all
