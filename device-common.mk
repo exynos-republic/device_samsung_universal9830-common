@@ -197,6 +197,11 @@ PRODUCT_COPY_FILES += \
 DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
+# PixelApps rro_overlays
+PRODUCT_PACKAGES += \
+    SettingsGoogleOverlayUniversal9830 \
+    SystemUIGoogleOverlayUniversal9830
+
 # Preopt SystemUI and Settings
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI \
