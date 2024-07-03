@@ -403,6 +403,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libutils-v32
 
+# Open EUICC
+PRODUCT_PACKAGES += \
+    OpenEUICC
+
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
